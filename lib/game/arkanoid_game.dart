@@ -20,6 +20,7 @@ class ArkanoidGame extends FlameGame {
       GameDimensions.levelWidth + verticalPadding,
       GameDimensions.levelHeight + verticalPadding,
     );
+    camera.viewfinder.zoom = 2;
     camera.viewfinder.position = Vector2(
       GameDimensions.levelWidth / 2,
       GameDimensions.levelHeight / 2,
