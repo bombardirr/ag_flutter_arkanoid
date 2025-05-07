@@ -11,7 +11,7 @@ class ArkanoidGame extends FlameGame {
   Future<void> onLoad() async {
     super.onLoad();
 
-    // Добавляем границы мира (фон уровня)
+    // Границы мира (фон уровня)
     world.add(WorldBounds());
 
     camera.viewfinder.visibleGameSize = Vector2(WorldBounds.worldWidth, WorldBounds.worldHeight);
@@ -21,10 +21,9 @@ class ArkanoidGame extends FlameGame {
     );
     camera.viewfinder.anchor = Anchor.center;
 
-    // Остальные компоненты
     add(Paddle());
   }
 
   @override
-  Color backgroundColor() => GameColors.worldBackground;
+  Color backgroundColor() => GameColors.worldBackgroundColor.withAlpha((0.3 * 255).toInt());
 }
