@@ -21,7 +21,7 @@ class WorldBounds extends RectangleComponent {
       RectangleComponent(
         size: Vector2(worldWidth, worldHeight),
         paint: Paint()
-          ..color = GameColors.strokeColor.withAlpha((0.3 * 255).toInt())
+          ..color = GameColors.levelStrokeColor.withAlpha((0.3 * 255).toInt())
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2.0,
       ),
