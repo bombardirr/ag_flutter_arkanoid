@@ -9,28 +9,46 @@ import '../constants/dimensions.dart';
 class ArkanoidGame extends FlameGame {
   @override
   Future<void> onLoad() async {
-    super.onLoad();
+    await super.onLoad();
 
-    final double verticalPadding = 100.0; // Отступ сверху и снизу
+    // Обновляем размеры мира под экран
+    GameDimensions.updateDimensions(size);
 
-    // Границы мира (фон уровня)
+    // Добавляем мир с новыми размерами
     world.add(WorldBounds());
 
+    // Настраиваем камеру
     camera.viewfinder.visibleGameSize = Vector2(
-      GameDimensions.levelWidth + verticalPadding,
-      GameDimensions.levelHeight + verticalPadding,
+      GameDimensions.levelWidth,
+      GameDimensions.levelHeight,
     );
-    camera.viewfinder.zoom = 2;
+    camera.viewfinder.anchor = Anchor.center;
     camera.viewfinder.position = Vector2(
       GameDimensions.levelWidth / 2,
       GameDimensions.levelHeight / 2,
     );
-    camera.viewfinder.anchor = Anchor.center;
 
-    world.add(Paddle());
+    // Добавляем платформу
+    world.add(
+      Paddle()
+        ..position = Vector2(
+          GameDimensions.levelWidth / 2 - GameDimensions.paddleWidth / 2,
+          GameDimensions.levelHeight - 50,
+        ),
+    );
   }
 
   @override
-  Color backgroundColor() =>
-      GameColors.worldBackgroundColor.withAlpha((0.3 * 255).toInt());
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    // При изменении размера экрана пересчитываем
+    GameDimensions.updateDimensions(size);
+    camera.viewfinder.visibleGameSize = Vector2(
+      GameDimensions.levelWidth,
+      GameDimensions.levelHeight,
+    );
+  }
+
+  @override
+  Color backgroundColor() => GameColors.worldBackgroundColor;
 }
