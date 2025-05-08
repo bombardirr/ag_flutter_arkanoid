@@ -7,7 +7,7 @@ class GameDimensions {
   static const double paddleWidth = 100;
   static const double paddleHeight = 20;
 
-  // Метод для расчета масштаба
+  // Тут мы ширину и высоту игрового поля адаптируем
   static void updateDimensions(Vector2 screenSize) {
     final targetRatio = levelWidth / levelHeight;
     final screenRatio = screenSize.x / screenSize.y;
